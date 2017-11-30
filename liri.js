@@ -34,14 +34,19 @@ var twitter = new Twitter({
 });
 
 // URL used to return userinformation //
-var queryUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=JohnSmi22247527&count=1&trim_user=true';
+var queryUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=JohnSmi22247527&count=20&trim_user=true';
 
 // Request to get tweet information //
 twitter.request(queryUrl, function(error, tweets, response) {
+        var tweet = JSON.parse(tweets.body);
       if (!error) {
-        // Used to log the tweets that were sent from the request. I was unable to pull the created_at and text //
-        console.log(JSON.parse(tweets.body));
+        for(i = 0; i < tweet.length; i++) {
+        // Used to log my tweets that were sent from the request //
+        console.log("Tweet Created :" + tweet[i].created_at);
+        console.log("Tweet :" + tweet[i].text);
+        console.log("\n--------------------------------------------------------------------")
     }
+  }
 });
 };
 
